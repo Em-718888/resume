@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宋桥 - 高级前端工程师</title>
+<style>
+  :root {
+    --text: #1a1a1a;
+    --muted: #555;
+    --light: #888;
+    --border: #e5e5e5;
+    --accent: #1a56db;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text);
+    background: #f5f5f5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 64px 60px 56px;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  }
+
+  /* ── Header ── */
+  .header {
+    margin-bottom: 36px;
+  }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: .02em;
+    margin-bottom: 4px;
+  }
+  .header .title {
+    font-size: 15px;
+    color: var(--muted);
+    font-weight: 400;
+    margin-bottom: 12px;
+  }
+  .header .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 20px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .header .meta span {
+    white-space: nowrap;
+  }
+  .header .meta a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  /* ── Sections ── */
+  .section {
+    margin-bottom: 30px;
+  }
+  .section-title {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--light);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 6px;
+    margin-bottom: 14px;
+  }
+
+  /* ── Summary ── */
+  .summary p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  /* ── Skills ── */
+  .skill-grid {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 6px 16px;
+    font-size: 13px;
+  }
+  .skill-grid .cat {
+    color: var(--muted);
+    font-weight: 500;
+    text-align: right;
+  }
+  .skill-grid .tags {
+    color: var(--text);
+  }
+
+  /* ── Experience ── */
+  .exp-item {
+    margin-bottom: 22px;
+    position: relative;
+  }
+  .exp-item:last-child { margin-bottom: 0; }
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 6px;
+  }
+  .exp-header .company {
+    font-weight: 600;
+    font-size: 15px;
+  }
+  .exp-header .role {
+    color: var(--muted);
+    font-size: 13px;
+    margin-left: 8px;
+  }
+  .exp-header .date {
+    color: var(--light);
+    font-size: 12px;
+    white-space: nowrap;
+    margin-left: auto;
+    padding-left: 16px;
+  }
+  .exp-item ul {
+    list-style: none;
+    padding: 0;
+  }
+  .exp-item li {
+    position: relative;
+    padding-left: 14px;
+    font-size: 13.5px;
+    color: var(--muted);
+    margin-bottom: 4px;
+    line-height: 1.65;
+  }
+  .exp-item li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: #ccc;
+    font-size: 10px;
+    top: 1px;
+  }
+  .exp-item .project-tag {
+    display: inline-block;
+    font-size: 11px;
+    color: var(--accent);
+    background: #eef3ff;
+    border-radius: 3px;
+    padding: 1px 7px;
+    margin-right: 4px;
+    margin-bottom: 3px;
+    font-weight: 500;
+  }
+
+  /* ── Education ── */
+  .edu-line {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+  }
+  .edu-line .school { font-weight: 500; }
+  .edu-line .degree { color: var(--muted); }
+  .edu-line .date { color: var(--light); font-size: 12px; }
+
+  /* ── Highlight ── */
+  .highlight-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .highlight-card {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+  .highlight-card .hc-title {
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    margin-bottom: 4px;
+  }
+  .highlight-card p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 640px) {
+    .page {
+      margin: 0;
+      padding: 28px 20px 32px;
+      max-width: 100%;
+      box-shadow: none;
+    }
+    .header h1 { font-size: 24px; }
+    .header .title { font-size: 13px; }
+    .header .meta { gap: 4px 14px; font-size: 12px; }
+    .skill-grid {
+      grid-template-columns: 1fr;
+      gap: 2px 0;
+    }
+    .skill-grid .cat {
+      text-align: left;
+      margin-top: 8px;
+    }
+    .skill-grid .cat:first-child { margin-top: 0; }
+    .exp-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .exp-header .date {
+      margin-left: 0;
+      padding-left: 0;
+      margin-top: 2px;
+    }
+  }
+
+  /* ── Print ── */
+  @media print {
+    body { background: #fff; }
+    .page {
+      margin: 0;
+      padding: 42px 48px 40px;
+      max-width: 100%;
+      box-shadow: none;
+      page-break-after: always;
+    }
+    @page { margin: 0; size: A4; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- Header -->
+  <header class="header">
+    <h1>宋桥</h1>
+    <div class="title">高级前端工程师 (AI Engineering &amp; 工程化方向)</div>
+    <div class="meta">
+      <span>📍 成都</span>
+      <span>📱 173-1310-4556</span>
+      <span>✉️ em_job@163.com</span>
+      <span>🔗 <a href="https://github.com/Em-718888">github.com/Em-718888</a></span>
+      <span>💼 在职，看机会</span>
+    </div>
+  </header>
+
+  <!-- Summary -->
+  <div class="section">
+    <div class="section-title">个人概述</div>
+    <div class="summary">
+      <p>
+        多年 Web 前端开发经验，具备多端多项目 0→1 交付能力及外包团队管理经验。
+        近两年深度实践 AI-assisted Development，基于 Claude、Codex、Cursor 等工具建立 AI + 工程化协作工作流，显著提升代码生成、重构及交付效率。
+      </p>
+    </div>
+  </div>
+
+  <!-- Skills -->
+  <div class="section">
+    <div class="section-title">专业技能</div>
+    <div class="skill-grid">
+      <div class="cat">框架 / 语言</div>
+      <div class="tags">Vue3 · Vue2 · TypeScript · JavaScript · React · QML · Nuxt</div>
+
+      <div class="cat">工程化</div>
+      <div class="tags">Vite · Webpack · Babel · ESLint · CI/CD · npm 私库 · SDK 封装 · Tolgee</div>
+
+      <div class="cat">UI / 组件</div>
+      <div class="tags">Ant Design Vue · Element · Vant · AntV G2 · ECharts</div>
+
+      <div class="cat">上传 / 流媒体</div>
+      <div class="tags">分片上传 · 断点续传 · COS 集成 · 视频流处理 · ffmpeg · m3u8</div>
+
+      <div class="cat">可视化 / GIS</div>
+      <div class="tags">Cesium · SuperMap · WebGL · Canvas</div>
+
+      <div class="cat">跨端</div>
+      <div class="tags">H5 · 微信小程序 · 手机银行混合开发 · 微信分享 · Flutter</div>
+
+      <div class="cat">AI 工程化</div>
+      <div class="tags">Claude · Codex · Cursor · Gemini · Prompt Engineering · MCP Server/Client · Context 管理策略 · AI 辅助开发/代码审查/重构/国际化</div>
+    </div>
+  </div>
+
+  <!-- Experience -->
+  <div class="section">
+    <div class="section-title">工作经历</div>
+
+    <!-- 与睿创新 -->
+    <div class="exp-item">
+      <div class="exp-header">
+        <span>
+          <span class="company">成都与睿创新科技有限公司</span>
+          <span class="role">高级前端开发工程师</span>
+        </span>
+        <span class="date">2024.06 — 至今</span>
+      </div>
+      <ul>
+        <li><span class="project-tag">surgsmart Web</span> 主项目，负责 PC 及 Mobile 端性能优化、页面重构与新需求开发（Vue3 + TypeScript + Vite，项目规模 400+ Vue 文件）。主导全项目 i18n 国际化，基于 Tolgee 搭建翻译管理平台，管理词条 2000+，建立国际化开发规范</li>
+        <li><span class="project-tag">surgsmart M3</span> 公司核心手术设备，负责设备端 QML 前端界面架构与开发，对接算法模型实现术中实时数据可视化、参数调控与交互控制</li>
+        <li><span class="project-tag">surgsmart Controller</span> 基于 MQTT 协议独立开发远程遥控器，完成设备间实时通信与控制</li>
+        <li><span class="project-tag">SAM2 平台应用</span> 负责前端调研与技术选型，完成平台应用开发落地</li>
+        <li><span class="project-tag">surgsmart Media Manager</span> 负责 macOS 端手术视频下载工具，基于 ffmpeg 实现大体积 m3u8 合并导出 MP4，解决浏览器端无法处理视频合并的局限。使用 Flutter 完成 macOS 应用打包与分发</li>
+        <li><span class="project-tag">surg Design Component / DataHub</span> 基于 Ant Design Vue 二次封装内部组件库，统一项目开发规范；基于 Nuxt 搭建数据管理平台</li>
+        <li>参与官网 www.withai.com 优化重新开发及前端团队招聘</li>
+      </ul>
+    </div>
+
+    <!-- 诺伊云 -->
+    <div class="exp-item">
+      <div class="exp-header">
+        <span>
+          <span class="company">深圳诺伊云计算科技有限公司</span>
+          <span class="role">前端开发工程师</span>
+        </span>
+        <span class="date">2021.04 — 2022.03</span>
+      </div>
+      <ul>
+        <li><span class="project-tag">智慧黄埔</span> 参与上海黄浦区政府智慧运营指挥中心 3D 可视化大屏项目，基于 Cesium/SuperMap 封装 GIS 事件交互层，结合 ECharts 完成数据可视化图表开发</li>
+        <li><span class="project-tag">全景画像</span><span class="project-tag">标签系统</span> 负责系统性能优化、组件化改造，CI/CD，版本升级上线</li>
+        <li><span class="project-tag">微信小程序、智慧黄埔手机APP</span> 负责微信小程序核心功能开发与迭代，带领外包团队完成需求评审、任务分发与交付验收</br>实现微信分享适配、H5 移动端适配及多分辨率响应式布局</li>
+      </ul>
+    </div>
+
+    <!-- 数云 -->
+    <div class="exp-item">
+      <div class="exp-header">
+        <span>
+          <span class="company">北京数云信息技术服务有限公司</span>
+          <span class="role">前端开发工程师</span>
+        </span>
+        <span class="date">2019.06 — 2020.12</span>
+      </div>
+      <ul>
+        <li><span class="project-tag">Athena（四川农信）</span> 主导前端架构搭建与开发（Vue + AntV G2 + Webpack）</li>
+        <li><span class="project-tag">Zeus项目管理平台</span> 组件化、功能开发</li>
+        <li>基于 AntV G2 封装业务层图表组件（柱状图、饼图、折线图、Canvas 3D 图），供团队复用，落地 npm 私仓，规范团队依赖管理</li>
+      </ul>
+    </div>
+
+    <!-- 南天 -->
+    <div class="exp-item">
+      <div class="exp-header">
+        <span>
+          <span class="company">南天电子信息产业股份有限公司</span>
+          <span class="role">前端开发工程师</span>
+        </span>
+        <span class="date">2016.07 — 2019.03</span>
+      </div>
+      <ul>
+        <li><span class="project-tag">金堂汇金村镇银行 App</span> 基于公司内部 MFP 平台完成混合开发（前端 Vue），独立负责 iOS/Android 打包与版本发布，至今仍可在 App Store 下载使用</li>
+        <li>参与建行龙行四海 App、华为 FusionStorage 8.0 等多个项目前端开发与交付</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Education -->
+  <div class="section">
+    <div class="section-title">教育背景</div>
+    <div class="edu-line">
+      <span class="school">天津科技大学</span>
+      <span class="degree">本科</span>
+      <span class="date">2012.09 — 2016.06</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
