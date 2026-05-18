@@ -7,120 +7,149 @@
 <style>
   :root {
     --text: #1a1a1a;
-    --muted: #555;
-    --light: #888;
-    --border: #e5e5e5;
-    --accent: #1a56db;
+    --muted: #5a5a5a;
+    --light: #999;
+    --border: #e8e8e8;
+    --accent: #2c3e6b;
+    --tag-bg: #f4f6fa;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-    font-size: 14px;
-    line-height: 1.7;
+    font-size: 13.5px;
+    line-height: 1.75;
     color: var(--text);
-    background: #f5f5f5;
+    background: #fafafa;
     -webkit-font-smoothing: antialiased;
   }
 
   .page {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 64px 60px 56px;
+    max-width: 820px;
+    margin: 48px auto;
+    padding: 72px 72px 64px;
     background: #fff;
-    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+    box-shadow: 0 0 0 1px rgba(0,0,0,.04), 0 2px 12px rgba(0,0,0,.04);
   }
 
   /* ── Header ── */
   .header {
-    margin-bottom: 36px;
+    margin-bottom: 48px;
   }
   .header h1 {
-    font-size: 28px;
-    font-weight: 700;
-    letter-spacing: .02em;
-    margin-bottom: 4px;
+    font-size: 38px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    margin-bottom: 6px;
+    color: var(--text);
   }
   .header .title {
     font-size: 15px;
     color: var(--muted);
     font-weight: 400;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
   }
   .header .meta {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px 20px;
+    gap: 4px 18px;
     font-size: 13px;
     color: var(--muted);
   }
   .header .meta span {
     white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 5px;
   }
+  .header .meta span::before {
+    font-size: 11px;
+    opacity: .5;
+  }
+  .header .meta .loc::before    { content: "成都"; display: none; }
+  .header .meta .phone::before   { display: none; }
+  .header .meta .email::before   { display: none; }
+  .header .meta .github::before  { display: none; }
+  .header .meta .status::before  { display: none; }
   .header .meta a {
     color: var(--accent);
     text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color .2s;
   }
+  .header .meta a:hover { border-color: var(--accent); }
 
   /* ── Sections ── */
   .section {
-    margin-bottom: 30px;
+    margin-bottom: 38px;
   }
+  .section:last-child { margin-bottom: 0; }
   .section-title {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: .08em;
+    letter-spacing: .1em;
     color: var(--light);
+    padding-bottom: 8px;
+    margin-bottom: 16px;
     border-bottom: 1px solid var(--border);
-    padding-bottom: 6px;
-    margin-bottom: 14px;
   }
 
   /* ── Summary ── */
   .summary p {
     font-size: 14px;
     color: var(--muted);
-    line-height: 1.8;
+    line-height: 1.85;
   }
 
   /* ── Skills ── */
   .skill-grid {
     display: grid;
-    grid-template-columns: 100px 1fr;
-    gap: 6px 16px;
+    grid-template-columns: 96px 1fr;
+    gap: 5px 20px;
     font-size: 13px;
   }
   .skill-grid .cat {
     color: var(--muted);
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 12px;
     text-align: right;
+    padding-top: 1px;
   }
   .skill-grid .tags {
     color: var(--text);
+    line-height: 1.6;
   }
 
   /* ── Experience ── */
   .exp-item {
-    margin-bottom: 22px;
+    margin-bottom: 26px;
     position: relative;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
   }
-  .exp-item:last-child { margin-bottom: 0; }
+  .exp-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
   .exp-header {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
   .exp-header .company {
     font-weight: 600;
     font-size: 15px;
+    color: var(--text);
   }
   .exp-header .role {
     color: var(--muted);
     font-size: 13px;
-    margin-left: 8px;
+    margin-left: 6px;
+    font-weight: 400;
   }
   .exp-header .date {
     color: var(--light);
@@ -128,6 +157,7 @@
     white-space: nowrap;
     margin-left: auto;
     padding-left: 16px;
+    letter-spacing: .02em;
   }
   .exp-item ul {
     list-style: none;
@@ -135,68 +165,47 @@
   }
   .exp-item li {
     position: relative;
-    padding-left: 14px;
-    font-size: 13.5px;
+    padding-left: 16px;
+    font-size: 13px;
     color: var(--muted);
-    margin-bottom: 4px;
-    line-height: 1.65;
+    margin-bottom: 5px;
+    line-height: 1.7;
   }
   .exp-item li::before {
-    content: "—";
+    content: "";
     position: absolute;
     left: 0;
-    color: #ccc;
-    font-size: 10px;
-    top: 1px;
+    top: 9px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #d0d4dc;
   }
   .exp-item .project-tag {
     display: inline-block;
-    font-size: 11px;
+    font-size: 10.5px;
     color: var(--accent);
-    background: #eef3ff;
+    background: var(--tag-bg);
     border-radius: 3px;
-    padding: 1px 7px;
-    margin-right: 4px;
-    margin-bottom: 3px;
-    font-weight: 500;
+    padding: 1px 8px;
+    margin-right: 5px;
+    font-weight: 600;
+    letter-spacing: .02em;
   }
 
   /* ── Education ── */
   .edu-line {
     display: flex;
     justify-content: space-between;
-    font-size: 14px;
+    align-items: baseline;
+    font-size: 13.5px;
   }
-  .edu-line .school { font-weight: 500; }
+  .edu-line .school { font-weight: 600; color: var(--text); }
   .edu-line .degree { color: var(--muted); }
-  .edu-line .date { color: var(--light); font-size: 12px; }
+  .edu-line .date { color: var(--light); font-size: 12px; letter-spacing: .02em; }
 
-  /* ── Highlight ── */
-  .highlight-cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-  .highlight-card {
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 12px 14px;
-    font-size: 13px;
-  }
-  .highlight-card .hc-title {
-    font-weight: 600;
-    font-size: 12px;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: .05em;
-    margin-bottom: 4px;
-  }
-  .highlight-card p {
-    color: var(--muted);
-    font-size: 13px;
-    line-height: 1.6;
-    margin: 0;
-  }
+  /* ── unused highlight cards ── */
+  .highlight-cards { display: none; }
 
   /* ── Mobile ── */
   @media (max-width: 640px) {
@@ -206,9 +215,11 @@
       max-width: 100%;
       box-shadow: none;
     }
-    .header h1 { font-size: 24px; }
+    .header { margin-bottom: 32px; }
+    .header h1 { font-size: 28px; }
     .header .title { font-size: 13px; }
-    .header .meta { gap: 4px 14px; font-size: 12px; }
+    .header .meta { gap: 3px 12px; font-size: 12px; }
+    .section { margin-bottom: 28px; }
     .skill-grid {
       grid-template-columns: 1fr;
       gap: 2px 0;
@@ -227,6 +238,7 @@
       padding-left: 0;
       margin-top: 2px;
     }
+    .exp-item { padding-bottom: 18px; margin-bottom: 20px; }
   }
 
   /* ── Print ── */
@@ -234,12 +246,13 @@
     body { background: #fff; }
     .page {
       margin: 0;
-      padding: 42px 48px 40px;
+      padding: 36px 42px 36px;
       max-width: 100%;
       box-shadow: none;
       page-break-after: always;
     }
     @page { margin: 0; size: A4; }
+    .exp-item { border-bottom-color: #e0e0e0; }
   }
 </style>
 </head>
@@ -252,11 +265,11 @@
     <h1>宋桥</h1>
     <div class="title">高级前端工程师 (AI Engineering &amp; 工程化方向)</div>
     <div class="meta">
-      <span>📍 成都</span>
-      <span>📱 173-1310-4556</span>
-      <span>✉️ em_job@163.com</span>
-      <span>🔗 <a href="https://github.com/Em-718888">github.com/Em-718888</a></span>
-      <span>💼 在职，看机会</span>
+      <span class="loc">成都</span>
+      <span>173-1310-4556</span>
+      <span>em_job@163.com</span>
+      <span><a href="https://github.com/Em-718888">GitHub</a></span>
+      <span>在职，看机会</span>
     </div>
   </header>
 
@@ -265,7 +278,7 @@
     <div class="section-title">个人概述</div>
     <div class="summary">
       <p>
-        多年 Web 前端开发经验，具备多端多项目 0→1 交付能力及外包团队管理经验。
+        多年 Web 前端开发经验，具备多端多项目 0→1 交付及前端小组管理经验。
         近两年深度实践 AI-assisted Development，基于 Claude、Codex、Cursor 等工具建立 AI + 工程化协作工作流，显著提升代码生成、重构及交付效率。
       </p>
     </div>
@@ -313,12 +326,14 @@
       </div>
       <ul>
         <li><span class="project-tag">surgsmart Web</span> 主项目，负责 PC 及 Mobile 端性能优化、页面重构与新需求开发（Vue3 + TypeScript + Vite，项目规模 400+ Vue 文件）。主导全项目 i18n 国际化，基于 Tolgee 搭建翻译管理平台，管理词条 2000+，建立国际化开发规范</li>
+        <li>深度性能优化与依赖治理：配置 manualChunks 分包策略拆分重型依赖，构建时长从 6 分钟优化至 1 分 20 秒；统一 PC/Mobile 端组件库为 Ant Design，移除 vant、element-plus 冗余依赖（moment → dayjs）；echarts、声网等 SDK 改为按需懒加载，显著提升首屏加载速度</li>
         <li><span class="project-tag">surgsmart M3</span> 公司核心手术设备，负责设备端 QML 前端界面架构与开发，对接算法模型实现术中实时数据可视化、参数调控与交互控制</li>
         <li><span class="project-tag">surgsmart Controller</span> 基于 MQTT 协议独立开发远程遥控器，完成设备间实时通信与控制</li>
         <li><span class="project-tag">SAM2 平台应用</span> 负责前端调研与技术选型，完成平台应用开发落地</li>
         <li><span class="project-tag">surgsmart Media Manager</span> 负责 macOS 端手术视频下载工具，基于 ffmpeg 实现大体积 m3u8 合并导出 MP4，解决浏览器端无法处理视频合并的局限。使用 Flutter 完成 macOS 应用打包与分发</li>
         <li><span class="project-tag">surg Design Component / DataHub</span> 基于 Ant Design Vue 二次封装内部组件库，统一项目开发规范；基于 Nuxt 搭建数据管理平台</li>
-        <li>参与官网 www.withai.com 优化重新开发及前端团队招聘</li>
+        <li>参与官网 www.withai.com 优化重新开发</li>
+        <li>负责前端团队招聘与面试，组内现有前端成员均由本人引入</li>
       </ul>
     </div>
 
