@@ -97,10 +97,31 @@
   }
 
   /* ── Summary ── */
-  .summary p {
-    font-size: 14px;
+  .summary-list {
+    list-style: none;
+    padding: 0;
+  }
+  .summary-list li {
+    position: relative;
+    padding-left: 20px;
+    font-size: 13.5px;
     color: var(--muted);
-    line-height: 1.85;
+    line-height: 1.75;
+    margin-bottom: 12px;
+  }
+  .summary-list li:last-child {
+    margin-bottom: 0;
+  }
+  .summary-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 2px;
+    height: calc(100% - 8px);
+    background: var(--accent);
+    opacity: .35;
+    border-radius: 1px;
   }
 
   /* ── Skills ── */
@@ -277,12 +298,12 @@
   <div class="section">
     <div class="section-title">个人概述</div>
     <div class="summary">
-      <p>
-        多年 Web 前端开发经验，具备多端多项目 0→1 交付及前端团队管理经验，主导技术选型、架构治理与工程规范建设。
-        技术面覆盖 Web / H5 / 小程序 / QML / Flutter 等多端开发，在视频流媒体与上传基础设施、GIS 可视化、国际化体系建设、组件库与 SDK 封装等方向有深入实践。
-        近两年深度实践 AI-assisted Development，基于 Claude、Codex、Cursor、Gemini 等工具建立 AI + 工程化协作工作流，具备 Prompt Engineering、Context 管理策略及多模型协同开发经验。
-        探索 MCP Server/Client 在 AI Agent 工作流中的工程实践，持续关注 AI Coding、Agent 与自动化开发方向，具备 AI 产品工程化落地意识。
-      </p>
+      <ul class="summary-list">
+        <li>多年 Web 前端开发经验，具备多端多项目 0→1 交付及前端团队管理经验，主导技术选型、架构治理与工程规范建设</li>
+        <li>技术面覆盖 Web / H5 / 小程序 / QML / Flutter 等多端，在视频流媒体与上传基础设施、GIS 可视化、国际化体系建设、组件库与 SDK 封装等方向有深入实践</li>
+        <li>近两年深度实践 AI-assisted Development，基于 Claude、Codex、Cursor、Gemini 等工具建立 AI + 工程化协作工作流，具备 Prompt Engineering、Context 管理策略及多模型协同开发经验</li>
+        <li>探索 MCP Server/Client 在 AI Agent 工作流中的工程实践，持续关注 AI Coding、Agent 与自动化开发方向，具备 AI 产品工程化落地意识</li>
+      </ul>
     </div>
   </div>
 
